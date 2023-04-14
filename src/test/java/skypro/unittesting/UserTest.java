@@ -10,6 +10,7 @@ public class UserTest {
     public static final String LOGIN = "login";
     public static final String EMAIL = "email@email.ru";
     public static final String WRONG_EMAIL = "emailemailru";
+    public static final String WRONG_LOGIN = "emailemailru";
 
     private static User user;
     // Чтобы протестировать работу тестируемого класса нужно создать экземпляр этого класса
@@ -29,6 +30,11 @@ public class UserTest {
    void checkObjectFieldsForInequality() {
        assertNotEquals(LOGIN, EMAIL);
      }
+
+     @Test
+    void compareLoginAndEmailIsNotEquals(){
+        assertThrows(IllegalArgumentException.class, () -> {new User(WRONG_LOGIN, WRONG_EMAIL);});
+    }
 
      @Test
      void checkIfTheCorrectEmailIsInstalled(){
